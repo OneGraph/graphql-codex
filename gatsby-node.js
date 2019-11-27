@@ -823,7 +823,7 @@ function createQueryAst(query) {
       case 'BlockString': {
         if (value) {
           nextValue = printBlockString(value, ''.padStart(tok.column - 1));
-          nextEl = nextValue;
+          nextEl = {type: 'text', value: nextValue};
         }
         break;
       }
@@ -832,6 +832,7 @@ function createQueryAst(query) {
           nextValue += '#' + value;
           nextEl = {
             type: 'element',
+            tagName: 'span',
             properties: {className: ['comment']},
             children: [{type: 'text', value: nextValue}],
           };
