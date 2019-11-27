@@ -4,6 +4,8 @@ import {Box, Text, Button, Collapsible} from 'grommet';
 import {FormDown, FormNext} from 'grommet-icons';
 import {FixedSizeList} from 'react-window';
 
+const ITEM_SIZE = 28;
+
 function SidebarListTypesImpl({types}) {
   const Row = ({style, index}) => {
     const type = types[index];
@@ -26,13 +28,15 @@ function SidebarListTypesImpl({types}) {
     );
   };
 
-  const itemSize = 28;
   return (
     <FixedSizeList
       width="100%"
-      height={Math.min(20, types.length) * 28 - (types.length > 20 ? 14 : 0)}
+      height={
+        Math.min(20, types.length) * ITEM_SIZE -
+        (types.length > 20 ? ITEM_SIZE / 2 : 0)
+      }
       itemCount={types.length}
-      itemSize={itemSize}
+      itemSize={ITEM_SIZE}
       style={{
         overflowX: 'hidden',
         borderBottom: '1px solid #D1D1D1',
@@ -124,6 +128,45 @@ function Sidebar() {
     }
   `);
 
+  const schemaLinks = [
+    {
+      to: '/object/Query',
+      text: 'Query',
+    },
+    {
+      to: '/object/Mutation',
+      text: 'Mutation',
+    },
+    {
+      to: '/object/Subscription',
+      text: 'Subscription',
+    },
+    {
+      to: '/objects',
+      text: 'All GraphQL Objects',
+    },
+    {
+      to: '/scalars',
+      text: 'All GraphQL Scalars',
+    },
+    {
+      to: '/interfaces',
+      text: 'All GraphQL Interfaces',
+    },
+    {
+      to: '/unions',
+      text: 'All GraphQL Unions',
+    },
+    {
+      to: '/enums',
+      text: 'All GraphQL Enums',
+    },
+    {
+      to: '/input-objects',
+      text: 'All GraphQL Input Objects',
+    },
+  ];
+
   return (
     <Box pad="none" elevation="small" background="white">
       <Box>
@@ -147,115 +190,22 @@ function Sidebar() {
           </Button>
         </Box>
         <Collapsible open={activeSection === 'schema'}>
-          <div style={{height: 28 * 9}}>
-            <Box
-              style={{height: 28}}
-              pad={{left: '30px'}}
-              border={{
-                side: 'bottom',
-                size: 'xsmall',
-                color: 'rgba(209, 209, 209, 0.5)',
-              }}>
-              <Link to="/object/Query">
-                <Text size="small">Query</Text>
-              </Link>
-            </Box>
-            <Box
-              style={{height: 28}}
-              pad={{left: '30px'}}
-              border={{
-                side: 'bottom',
-                size: 'xsmall',
-                color: 'rgba(209, 209, 209, 0.5)',
-              }}>
-              <Link to="/object/Mutation">
-                <Text size="small">Mutation</Text>
-              </Link>
-            </Box>
-            <Box
-              style={{height: 28}}
-              pad={{left: '30px'}}
-              border={{
-                side: 'bottom',
-                size: 'xsmall',
-                color: 'rgba(209, 209, 209, 0.5)',
-              }}>
-              <Link to="/object/Subscription">
-                <Text size="small">Subscription</Text>
-              </Link>
-            </Box>
-            <Box
-              style={{height: 28}}
-              pad={{left: '30px'}}
-              border={{
-                side: 'bottom',
-                size: 'xsmall',
-                color: 'rgba(209, 209, 209, 0.5)',
-              }}>
-              <Link to="/objects">
-                <Text size="small">All Objects</Text>
-              </Link>
-            </Box>
-            <Box
-              style={{height: 28}}
-              pad={{left: '30px'}}
-              border={{
-                side: 'bottom',
-                size: 'xsmall',
-                color: 'rgba(209, 209, 209, 0.5)',
-              }}>
-              <Link to="/scalars">
-                <Text size="small">All Scalars</Text>
-              </Link>
-            </Box>
-            <Box
-              style={{height: 28}}
-              pad={{left: '30px'}}
-              border={{
-                side: 'bottom',
-                size: 'xsmall',
-                color: 'rgba(209, 209, 209, 0.5)',
-              }}>
-              <Link to="/interfaces">
-                <Text size="small">All Interfaces</Text>
-              </Link>
-            </Box>
-            <Box
-              style={{height: 28}}
-              pad={{left: '30px'}}
-              border={{
-                side: 'bottom',
-                size: 'xsmall',
-                color: 'rgba(209, 209, 209, 0.5)',
-              }}>
-              <Link to="/unions">
-                <Text size="small">All Unions</Text>
-              </Link>
-            </Box>
-            <Box
-              style={{height: 28}}
-              pad={{left: '30px'}}
-              border={{
-                side: 'bottom',
-                size: 'xsmall',
-                color: 'rgba(209, 209, 209, 0.5)',
-              }}>
-              <Link to="/enums">
-                <Text size="small">All Enums</Text>
-              </Link>
-            </Box>
-            <Box
-              style={{height: 28}}
-              pad={{left: '30px'}}
-              border={{
-                side: 'bottom',
-                size: 'xsmall',
-                color: 'rgba(209, 209, 209, 0.5)',
-              }}>
-              <Link to="/input-objects">
-                <Text size="small">All Input Objects</Text>
-              </Link>
-            </Box>
+          <div style={{height: ITEM_SIZE * schemaLinks.length}}>
+            {schemaLinks.map(({to, text}) => (
+              <Box
+                key={to}
+                style={{height: ITEM_SIZE}}
+                pad={{left: '30px'}}
+                border={{
+                  side: 'bottom',
+                  size: 'xsmall',
+                  color: 'rgba(209, 209, 209, 0.5)',
+                }}>
+                <Link to={to}>
+                  <Text size="small">{text}</Text>
+                </Link>
+              </Box>
+            ))}
           </div>
         </Collapsible>
       </Box>
