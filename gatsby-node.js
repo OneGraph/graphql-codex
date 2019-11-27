@@ -1,4 +1,5 @@
 const {
+  validate,
   TokenKind,
   visit,
   parse,
@@ -932,6 +933,17 @@ async function onCreateNode(arg) {
         throw new Error('Missing query in file ' + file.name);
       }
 
+      const parsed = parse(query);
+
+      const typesUsed = typeUsagesWithin(parsed);
+
+      const errors = validate(schema, parsed);
+
+      if (errors.length) {
+        console.error('Validation errors in query', file.name, errors);
+        throw new Error('Validation errors in query ' + file.name);
+      }
+
       const queryDigest = crypto
         .createHash(`md5`)
         .update(query)
@@ -951,10 +963,6 @@ async function onCreateNode(arg) {
         }
         await cache.set(queryCacheKey, shortId);
       }
-
-      const parsed = parse(query);
-
-      const typesUsed = typeUsagesWithin(parsed);
 
       const nodeId = createNodeId(`Example-${file.name}`);
       createNode({
