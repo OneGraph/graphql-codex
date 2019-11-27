@@ -89,7 +89,7 @@ export default function TypeBox({type, children}) {
         {examples.length ? (
           <Box margin={{top: 'medium'}}>
             <Head label="EXAMPLE USAGES" />
-            <ViewAllBox items={examples} baseCount={10}>
+            <ViewAllBox items={examples} baseCount={4}>
               {example => (
                 <div key={example.name}>
                   <Text size="small">
