@@ -8,7 +8,7 @@ query GitHubUnresolvedIssuesQuery {
   gitHub {
     viewer {
       issues(
-        orderBy: { direction: DESC, field: CREATED_AT }
+        orderBy: {direction: DESC, field: CREATED_AT}
         first: 10
         states: OPEN
       ) {

@@ -8,7 +8,7 @@ query GitHubOpenPullRequestsQuery {
   gitHub {
     repository(name: "graphql-js", owner: "graphql") {
       pullRequests(
-        orderBy: { direction: DESC, field: CREATED_AT }
+        orderBy: {direction: DESC, field: CREATED_AT}
         first: 10
         states: OPEN
       ) {
