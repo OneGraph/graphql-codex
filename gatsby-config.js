@@ -4,6 +4,7 @@ module.exports = {
     title: `OneGraph GraphQL Schema Reference`,
     description: `Full reference for OneGraph's GraphQL Schema.`,
     author: `@onegraphio`,
+    siteUrl: 'https://www.onegraph.com/schema',
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -68,6 +69,7 @@ module.exports = {
     },
     `gatsby-transformer-remark`,
     `gatsby-plugin-meta-redirect`,
+    `gatsby-plugin-sitemap`,
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
