@@ -159,7 +159,7 @@ function makeDescriptionAst(x) {
 }
 
 function makeFieldDescriptionAstImpl(f) {
-  if (!f.description) {
+  if (!f.description && f.type) {
     const type = getNamedType(f.type);
     if (!isScalarType(type)) {
       return makeDescriptionAst(type);
