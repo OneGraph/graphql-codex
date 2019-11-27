@@ -977,7 +977,7 @@ async function onCreateNode(arg) {
 exports.onCreateNode = onCreateNode;
 
 const createTypePages = async ({graphql, actions}) => {
-  const {createPage} = actions;
+  const {createPage, createRedirect} = actions;
   const result = await graphql(`
     query {
       types {
@@ -996,6 +996,12 @@ const createTypePages = async ({graphql, actions}) => {
     GraphQLScalarType: path.resolve(`./src/templates/scalar.js`),
   };
   result.data.types.forEach(type => {
+    createRedirect({
+      fromPath: `/type/${type.name}`,
+      toPath: type.slug,
+      redirectInBrowser: false,
+      isPermanent: true,
+    });
     createPage({
       path: type.slug,
       component: componentForType[type.__typename],
