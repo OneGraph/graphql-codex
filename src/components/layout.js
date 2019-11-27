@@ -130,6 +130,10 @@ const Layout = ({children}) => {
                 </Box>
                 <Box style={{maxWidth: 720}} gridArea="main">
                   {children}
+                  {/* Prevent box from shrinking */}
+                  <div style={{visibility: 'hidden', wordBreak: 'break-word'}}>
+                    {''.padStart(1024, '_')}
+                  </div>
                 </Box>
                 {small ? null : (
                   <Box style={{minWidth: 336}} gridArea="sidebar">
