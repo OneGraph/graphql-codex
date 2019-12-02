@@ -53,12 +53,14 @@ function ViewAllBox({items, baseCount, children}) {
             bottom: 0,
             left: 0,
             width: '100%',
+            pointerEvents: 'none',
           }}
           direction="row"
           justify="center"
           align="end"
           background="linear-gradient(to bottom, rgba(255,255,255,0) 30%, rgba(255,255,255,1) 100%)">
           <Button
+            style={{pointerEvents: 'auto'}}
             plain
             onClick={() => setViewAll(true)}
             label={
