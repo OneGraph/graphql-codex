@@ -6,7 +6,7 @@ const renderAst = new rehypeReact({
 }).Compiler;
 
 function Description({ast}) {
-  return renderAst(ast);
+  return <span className="description">{renderAst(ast)}</span>;
 }
 
 export default Description;
