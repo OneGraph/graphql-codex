@@ -24,6 +24,8 @@ body {
 @media (max-width: 800px) {
   .layout {
     grid-template-areas: 'header' 'main' 'sidebar';
+    grid-template-columns: auto;
+    grid-gap: 12px;
   }
   .header a {
     font-size: 14px;
