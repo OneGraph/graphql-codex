@@ -7,7 +7,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Grommet, Grid, Box, Anchor, ResponsiveContext, Text} from 'grommet';
+import {Grommet, Box, Anchor, Text} from 'grommet';
 import Sidebar from './sidebar';
 import {useSingleton} from '@tippy.js/react';
 import {withPrefix} from 'gatsby';
@@ -76,74 +76,41 @@ const Layout = ({children}) => {
   return (
     <TippySingleton.Provider value={tippySingleton}>
       <Grommet theme={theme}>
-        <ResponsiveContext.Consumer>
-          {size => {
-            const small = size === 'small';
-
-            return (
-              <Grid
-                fill
-                justifyContent="center"
-                areas={
-                  small
-                    ? [
-                        {name: 'header', start: [0, 0], end: [0, 0]},
-                        {name: 'main', start: [0, 1], end: [0, 1]},
-                      ]
-                    : [
-                        {name: 'header', start: [0, 0], end: [1, 0]},
-                        {name: 'main', start: [0, 1], end: [0, 1]},
-                        {name: 'sidebar', start: [1, 1], end: [1, 1]},
-                      ]
-                }
-                columns={small ? ['auto'] : ['auto', 'auto']}
-                rows={['auto', 'flex']}
-                gap="small">
-                <Box gridArea="header">
-                  <Text size={small ? 'small' : 'medium'}>
-                    <Box
-                      style={{padding: '1em'}}
-                      elevation="small"
-                      background="white"
-                      direction="row"
-                      justify="stretch"
-                      fill>
-                      <Box direction="row" gap="small">
-                        <Anchor href="https://www.onegraph.com/">
-                          OneGraph
-                        </Anchor>
-                        <Anchor href={withPrefix('/')}>Home</Anchor>
-                      </Box>
-                      <Box direction="row" fill gap="small" justify="end">
-                        <Anchor href="https://www.onegraph.com/docs">
-                          Docs
-                        </Anchor>
-                        <Anchor href="https://www.onegraph.com/pricing">
-                          Pricing
-                        </Anchor>
-                        <Anchor href="https://www.onegraph.com/chat">
-                          Support
-                        </Anchor>
-                      </Box>
-                    </Box>
-                  </Text>
+        <div className="layout">
+          <Box className="header" gridArea="header">
+            <Text>
+              <Box
+                style={{padding: '1em'}}
+                elevation="small"
+                background="white"
+                direction="row"
+                justify="stretch"
+                fill>
+                <Box direction="row" gap="small">
+                  <Anchor href="https://www.onegraph.com/">OneGraph</Anchor>
+                  <Anchor href={withPrefix('/')}>Home</Anchor>
                 </Box>
-                <Box style={{maxWidth: 720}} gridArea="main">
-                  {children}
-                  {/* Prevent box from shrinking */}
-                  <div style={{visibility: 'hidden', wordBreak: 'break-word'}}>
-                    {''.padStart(1024, '_')}
-                  </div>
+                <Box direction="row" fill gap="small" justify="end">
+                  <Anchor href="https://www.onegraph.com/docs">Docs</Anchor>
+                  <Anchor href="https://www.onegraph.com/pricing">
+                    Pricing
+                  </Anchor>
+                  <Anchor href="https://www.onegraph.com/chat">Support</Anchor>
                 </Box>
-                {small ? null : (
-                  <Box style={{minWidth: 336}} gridArea="sidebar">
-                    <Sidebar />
-                  </Box>
-                )}
-              </Grid>
-            );
-          }}
-        </ResponsiveContext.Consumer>
+              </Box>
+            </Text>
+          </Box>
+          <Box style={{maxWidth: 720}} gridArea="main">
+            {children}
+            {/* Prevent box from shrinking */}
+            <div style={{visibility: 'hidden', wordBreak: 'break-word'}}>
+              {''.padStart(100, '_')}
+            </div>
+          </Box>
+          <Box style={{minWidth: 336}} gridArea="sidebar">
+            <Sidebar />
+          </Box>
+        </div>
       </Grommet>
     </TippySingleton.Provider>
   );

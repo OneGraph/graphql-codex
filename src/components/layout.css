@@ -6,6 +6,30 @@ body {
   background: #fef7fc;
 }
 
+.layout {
+  display: grid;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  grid-template-areas: 'header header' 'main sidebar';
+  grid-template-columns: auto auto;
+  grid-gap: 12px 12px;
+  grid-template-rows: auto 1fr;
+  justify-content: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+}
+
+@media (max-width: 800px) {
+  .layout {
+    grid-template-areas: 'header' 'main' 'sidebar';
+  }
+  .header a {
+    font-size: 14px;
+  }
+}
+
 .def {
   color: #d2054e;
 }
