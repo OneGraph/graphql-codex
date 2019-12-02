@@ -1,18 +1,23 @@
 import {Link, useStaticQuery, graphql} from 'gatsby';
 import React from 'react';
-import {Box, Text, Button, Collapsible} from 'grommet';
+import {Box, Text, Button, Collapsible, TextInput} from 'grommet';
 import {FormDown, FormNext} from 'grommet-icons';
 import {FixedSizeList} from 'react-window';
 
 const ITEM_SIZE = 28;
 
-function SidebarListTypesImpl({types}) {
+function SidebarListTypesImpl({types: initialTypes}) {
+  const [filter, setFilter] = React.useState('');
+  const lowerFilter = filter.toLowerCase();
+  const types = filter
+    ? initialTypes.filter(t => t.name.toLowerCase().indexOf(lowerFilter) !== -1)
+    : initialTypes;
   const Row = ({style, index}) => {
     const type = types[index];
     return (
       <Box
         style={style}
-        pad={{left: '30px'}}
+        pad={{left: '11px'}}
         border={{
           side: 'bottom',
           size: 'xsmall',
@@ -29,20 +34,38 @@ function SidebarListTypesImpl({types}) {
   };
 
   return (
-    <FixedSizeList
-      width="100%"
-      height={
-        Math.min(20, types.length) * ITEM_SIZE -
-        (types.length > 20 ? ITEM_SIZE / 2 : 0)
-      }
-      itemCount={types.length}
-      itemSize={ITEM_SIZE}
-      style={{
-        overflowX: 'hidden',
-        borderBottom: '1px solid #D1D1D1',
-      }}>
-      {Row}
-    </FixedSizeList>
+    <>
+      {initialTypes.length > 20 ? (
+        <TextInput
+          plain
+          size="small"
+          placeholder="Filter..."
+          style={{
+            borderBottom: types.length
+              ? '1px solid rgba(209, 209, 209, 0.5)'
+              : 'none',
+            borderRadius: 0,
+            fontWeight: 'normal',
+          }}
+          value={filter}
+          onChange={e => setFilter(e.target.value)}
+        />
+      ) : null}
+      <FixedSizeList
+        width="100%"
+        height={
+          Math.min(20, types.length) * ITEM_SIZE -
+          (types.length > 20 ? ITEM_SIZE / 2 : 0)
+        }
+        itemCount={types.length}
+        itemSize={ITEM_SIZE}
+        style={{
+          overflowX: 'hidden',
+          borderBottom: '1px solid #D1D1D1',
+        }}>
+        {Row}
+      </FixedSizeList>
+    </>
   );
 }
 
