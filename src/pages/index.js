@@ -56,6 +56,12 @@ function IndexPage() {
           OneGraph supports.
         </P>
 
+        <P>
+          If you have your own public GraphQL API,{' '}
+          <Link to="/signup">learn more</Link> about how to create this schema
+          reference for your API.
+        </P>
+
         <Heading margin="none" level={4}>
           About OneGraph
         </Heading>
