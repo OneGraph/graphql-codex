@@ -1,0 +1,6 @@
+[template.environment]
+  GRAPHQL_URL = "set the url to your GraphQL API here"
+
+[build]
+  command = "node fetchSchema.js --path schema.json --url $GRAPHQL_URL && yarn build"
+

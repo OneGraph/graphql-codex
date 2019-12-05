@@ -10,19 +10,16 @@ const fs = require('fs');
 
 const yargs = require('yargs');
 
-async function runIntrospectionQuery() {
+async function runIntrospectionQuery(url) {
   const body = JSON.stringify({query: getIntrospectionQuery()});
-  const res = await fetch(
-    'http://localhost:8082/graphql?app_id=0b33e830-7cde-4b90-ad7e-2a39c57c0e11',
-    {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-      body,
+  const res = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
     },
-  );
+    body,
+  });
   const json = await res.json();
   if (json.errors) {
     throw new Error(
@@ -39,13 +36,19 @@ function writeFile(path, content) {
 }
 
 async function main(config) {
-  const schema = await runIntrospectionQuery();
+  const schema = await runIntrospectionQuery(config.url);
   writeFile(config.path, JSON.stringify(schema, null, 2));
 }
 
 const argv = yargs
-  .usage('Fetch OneGraph schema $0 --path <path>')
+  .usage('Fetch GraphQL schema $0 --url <schema-url> --path <path>')
   .options({
+    url: {
+      describe: 'GraphQL API URL',
+      demandOption: true,
+      type: 'string',
+      array: false,
+    },
     path: {
       describe: 'Path to save schema.json',
       demandOption: true,
