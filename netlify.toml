@@ -3,4 +3,6 @@
 
 [build]
   command = "node fetchSchema.js --path schema.json --url $GRAPHQL_URL && yarn build"
+  publish = "public"
+
 
