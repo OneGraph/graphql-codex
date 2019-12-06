@@ -87,7 +87,6 @@ export const query = graphql`
 `;
 
 function TypeLink({type}) {
-  console.log('type', type);
   switch (type.__typename) {
     case 'GraphQLNonNullType':
       return (
@@ -119,7 +118,6 @@ export default function FieldsBox({type: {fields, deprecatedFields}}) {
     <Box margin={{top: 'medium'}}>
       <Head label="FIELDS" />
       {fields.map(field => {
-        console.log('field', field);
         const isBeta = field.isBeta;
 
         return (
