@@ -1,4 +1,5 @@
 const {
+  getIntrospectionQuery,
   validate,
   TokenKind,
   visit,
@@ -42,9 +43,54 @@ const String = GraphQLString;
 const Boolean = GraphQLBoolean;
 const ID = GraphQLID;
 
-const schema = buildClientSchema(
-  JSON.parse(fs.readFileSync('./schema.json', 'UTF-8')),
-);
+const GRAPHQL_URL = process.env.GRAPHQL_URL;
+
+if (!GRAPHQL_URL) {
+  throw new Error(
+    'GRAPHQL_URL must be exported with the URL to your GraphQL API.',
+  );
+}
+/* exports.onPreInit = ({actions}) => {
+
+  console.log('onPreInit', x, y, z);
+};
+ */
+
+async function runIntrospectionQuery(url) {
+  const body = JSON.stringify({query: getIntrospectionQuery()});
+  const res = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+    body,
+  });
+  const json = await res.json();
+  if (json.errors) {
+    throw new Error(
+      'Error running introspection query, errors=' +
+        JSON.stringify(resp.errors),
+    );
+  } else {
+    return json.data;
+  }
+}
+
+let schemaPromise = null;
+
+async function getSchemaImpl() {
+  const schemaJSON = await runIntrospectionQuery(GRAPHQL_URL);
+  return buildClientSchema(schemaJSON);
+}
+
+async function getSchema() {
+  if (schemaPromise) {
+    return await schemaPromise;
+  }
+  schemaPromise = getSchemaImpl();
+  return await schemaPromise;
+}
 
 function classifyTypes(schema) {
   const scalars = [];
@@ -113,8 +159,6 @@ function classifyTypes(schema) {
     requiredBy,
   };
 }
-
-const classified = classifyTypes(schema);
 
 function slugForType(type) {
   switch (type.constructor) {
@@ -186,7 +230,9 @@ function fieldIsDeprecated(f) {
   return fieldIsBeta(f) ? false : f.isDeprecated;
 }
 
-exports.createResolvers = ({createResolvers, intermediateSchema}) => {
+exports.createResolvers = async ({createResolvers, intermediateSchema}) => {
+  const schema = await getSchema();
+  const classified = classifyTypes(schema);
   const Example = intermediateSchema.getType('Example');
   const JSON = intermediateSchema.getType('JSON');
   const NamedType = new GraphQLInterfaceType({
@@ -524,7 +570,7 @@ exports.createResolvers = ({createResolvers, intermediateSchema}) => {
       queryAst: {
         type: NonNull(JSON),
         resolve(e) {
-          return createQueryAst(e.rawQuery);
+          return createQueryAst(schema, e.rawQuery);
         },
       },
       descriptionAst,
@@ -588,7 +634,7 @@ exports.createResolvers = ({createResolvers, intermediateSchema}) => {
   createResolvers(resolvers);
 };
 
-function typeUsagesWithin(doc) {
+function typeUsagesWithin(schema, doc) {
   const s = new Set();
   const typeInfo = new TypeInfo(schema);
 
@@ -640,7 +686,7 @@ function typeLink(type) {
   };
 }
 
-function createQueryAst(query) {
+function createQueryAst(schema, query) {
   const parsed = parse(query);
   const tokenTypeInfo = new Map();
   const typeInfo = new TypeInfo(schema);
@@ -903,6 +949,7 @@ const shortenQueryMutation = `
 
 async function onCreateNode(arg) {
   const {node, getNode, actions, createNodeId, cache} = arg;
+  const schema = await getSchema();
   const {createNode} = actions;
   if (node.internal.type === 'MarkdownRemark' && node.parent) {
     const file = getNode(node.parent);
@@ -935,7 +982,7 @@ async function onCreateNode(arg) {
 
       const parsed = parse(query);
 
-      const typesUsed = typeUsagesWithin(parsed);
+      const typesUsed = typeUsagesWithin(schema, parsed);
 
       const errors = validate(schema, parsed);
 
