@@ -7,7 +7,6 @@ const {
   TypeInfo,
   visitWithTypeInfo,
   buildClientSchema,
-  GraphQLNamedType,
   GraphQLObjectType,
   GraphQLInterfaceType,
   GraphQLUnionType,
@@ -15,7 +14,6 @@ const {
   GraphQLNonNull,
   GraphQLString,
   GraphQLBoolean,
-  GraphQLID,
   GraphQLScalarType,
   GraphQLEnumType,
   GraphQLInputObjectType,
@@ -41,7 +39,12 @@ const List = GraphQLList;
 const NonNull = GraphQLNonNull;
 const String = GraphQLString;
 const Boolean = GraphQLBoolean;
-const ID = GraphQLID;
+
+const os = require('os');
+
+console.log('freemem/totalmem', os.freemem(), os.totalmem());
+console.log('uptime', os.uptime());
+console.log('cups', JSON.stringify(os.cpus(), null, 2));
 
 const GRAPHQL_URL = process.env.GRAPHQL_URL;
 
@@ -69,8 +72,7 @@ async function runIntrospectionQuery(url) {
   const json = await res.json();
   if (json.errors) {
     throw new Error(
-      'Error running introspection query, errors=' +
-        JSON.stringify(res.errors),
+      'Error running introspection query, errors=' + JSON.stringify(res.errors),
     );
   } else {
     return json.data;
