@@ -70,7 +70,7 @@ async function runIntrospectionQuery(url) {
   if (json.errors) {
     throw new Error(
       'Error running introspection query, errors=' +
-        JSON.stringify(resp.errors),
+        JSON.stringify(res.errors),
     );
   } else {
     return json.data;
