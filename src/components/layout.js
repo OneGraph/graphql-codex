@@ -87,15 +87,7 @@ const Layout = ({children}) => {
                 justify="stretch"
                 fill>
                 <Box direction="row" gap="small">
-                  <Anchor href="https://www.onegraph.com/">OneGraph</Anchor>
                   <Anchor href={withPrefix('/')}>Home</Anchor>
-                </Box>
-                <Box direction="row" fill gap="small" justify="end">
-                  <Anchor href="https://www.onegraph.com/docs">Docs</Anchor>
-                  <Anchor href="https://www.onegraph.com/pricing">
-                    Pricing
-                  </Anchor>
-                  <Anchor href="https://www.onegraph.com/chat">Support</Anchor>
                 </Box>
               </Box>
             </Text>

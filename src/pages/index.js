@@ -12,49 +12,69 @@ function P({children}) {
   );
 }
 
-function IndexPage() {
+export const query = graphql`
+  query TypesQuery {
+    queryType {
+      name
+      slug
+    }
+    mutationType {
+      name
+      slug
+    }
+    subscriptionType {
+      name
+      slug
+    }
+  }
+`;
+
+function IndexPage({data}) {
+  const {queryType, mutationType, subscriptionType} = data;
   return (
     <>
-      <SEO title="OneGraph GraphQL Schema Reference" />
+      <SEO title="GraphQL Schema Reference" />
       <Box pad="medium" elevation="small" background="white">
         <Heading margin="none" level={3}>
-          OneGraph's GraphQL Schema
+          GraphQL Schema
         </Heading>
-        <P>Welcome to OneGraph's GraphQL API Reference.</P>
+        <P>Welcome to the GraphQL API Reference.</P>
         <Heading margin="none" level={4}>
           About the reference
         </Heading>
         <P>
-          This reference provides information about every type in OneGraph's
-          GraphQL Schema.
+          This reference provides information about every type in the GraphQL
+          Schema.
         </P>
         <P>
           Use the following links to get started, or browse the types in the
           sidebar.
         </P>
-        <P>
-          <Link to="/object/Query" className="kind-NamedType">
-            Query
-          </Link>
-          : the starting point for making read-only queries into the APIs that
-          OneGraph supports.
-        </P>
+        {queryType ? (
+          <P>
+            <Link to={queryType.slug} className="kind-NamedType">
+              {queryType.name}
+            </Link>
+            : the starting point for reading data.
+          </P>
+        ) : null}
+        {mutationType ? (
+          <P>
+            <Link to={mutationType.slug} className="kind-NamedType">
+              {mutationType.name}
+            </Link>
+            : the starting point for writing data.
+          </P>
+        ) : null}
 
-        <P>
-          <Link to="/object/Mutation" className="kind-NamedType">
-            Mutation
-          </Link>
-          : the starting point for writing data to the APIs that OneGraph
-          supports.
-        </P>
-
-        <P>
-          <Link to="/object/Subscription" className="kind-NamedType">
-            Subscription
-          </Link>
-          : the starting point for subscribing to new data from the APIs that
-          OneGraph supports.
-        </P>
+        {subscriptionType ? (
+          <P>
+            <Link to={subscriptionType.slug} className="kind-NamedType">
+              {subscriptionType.name}
+            </Link>
+            : the starting point for subscribing to new data.
+          </P>
+        ) : null}
 
         <P>
           If you have your own public GraphQL API,{' '}
@@ -62,14 +82,6 @@ function IndexPage() {
           reference for your API.
         </P>
 
-        <Heading margin="none" level={4}>
-          About OneGraph
-        </Heading>
-        <P>
-          OneGraph is the easiest way to build integrations with 3rd-party
-          services. Connect Stripe, Salesforce, Zendesk, Twitter, GitHub, and
-          more through one consistent GraphQL interface.
-        </P>
         <Heading margin="none" level={4}>
           About GraphQL
         </Heading>

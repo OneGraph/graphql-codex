@@ -40,12 +40,6 @@ const NonNull = GraphQLNonNull;
 const String = GraphQLString;
 const Boolean = GraphQLBoolean;
 
-const os = require('os');
-
-console.log('freemem/totalmem', os.freemem(), os.totalmem());
-console.log('uptime', os.uptime());
-console.log('cups', JSON.stringify(os.cpus(), null, 2));
-
 const GRAPHQL_URL = process.env.GRAPHQL_URL;
 
 if (!GRAPHQL_URL) {
@@ -629,6 +623,24 @@ exports.createResolvers = async ({createResolvers, intermediateSchema}) => {
         },
         resolve(source, args, context, info) {
           return schema.getType(args.name);
+        },
+      },
+      queryType: {
+        type: ObjectType,
+        resolve(source, args, context, info) {
+          return schema.getQueryType();
+        },
+      },
+      mutationType: {
+        type: ObjectType,
+        resolve(source, args, context, info) {
+          return schema.getMutationType();
+        },
+      },
+      subscriptionType: {
+        type: ObjectType,
+        resolve(source, args, context, info) {
+          return schema.getSubscriptionType();
         },
       },
     },

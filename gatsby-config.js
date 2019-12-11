@@ -1,10 +1,9 @@
 module.exports = {
   pathPrefix: '/schema',
   siteMetadata: {
-    title: `OneGraph GraphQL Schema Reference`,
-    description: `Full reference for OneGraph's GraphQL Schema.`,
+    title: `GraphQL Schema Reference`,
+    description: `Full reference for GraphQL Schema.`,
     author: `@onegraphio`,
-    siteUrl: 'https://www.onegraph.com/schema',
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -44,8 +43,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `OneGraph GraphQL Schema Reference`,
-        short_name: `OneGraph Schema`,
+        name: `GraphQL Schema Reference`,
+        short_name: `Schema`,
         start_url: `/`,
         background_color: `#fef7fc`,
         theme_color: `#E535AB`,

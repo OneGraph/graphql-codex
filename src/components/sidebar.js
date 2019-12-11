@@ -6,7 +6,7 @@ import {FixedSizeList} from 'react-window';
 
 const ITEM_SIZE = 28;
 
-function SidebarListTypesImpl({types: initialTypes}) {
+function SidebarListTypesImpl({types: initialTypes, label}) {
   const [filter, setFilter] = React.useState('');
   const lowerFilter = filter.toLowerCase();
   const types = filter
@@ -50,6 +50,13 @@ function SidebarListTypesImpl({types: initialTypes}) {
           value={filter}
           onChange={e => setFilter(e.target.value)}
         />
+      ) : null}
+      {types.length === 0 ? (
+        <Box justify="center" pad={{left: '11px'}} style={{height: ITEM_SIZE}}>
+          <Text size="small" style={{fontStyle: 'italic'}}>
+            No {label}
+          </Text>
+        </Box>
       ) : null}
       <FixedSizeList
         width="100%"
@@ -113,7 +120,7 @@ function SidebarSection({section, open, classified, setActiveSection}) {
         </Button>
       </Box>
       <Collapsible open={open}>
-        <SidebarListTypes types={classified[section]} />
+        <SidebarListTypes types={classified[section]} label={label} />
       </Collapsible>
     </Box>
   );
@@ -148,22 +155,35 @@ function Sidebar() {
         name
         slug
       }
+      queryType {
+        name
+        slug
+      }
+      mutationType {
+        name
+        slug
+      }
+      subscriptionType {
+        name
+        slug
+      }
     }
   `);
 
-  const schemaLinks = [
-    {
-      to: '/object/Query',
-      text: 'Query',
-    },
-    {
-      to: '/object/Mutation',
-      text: 'Mutation',
-    },
-    {
-      to: '/object/Subscription',
-      text: 'Subscription',
-    },
+  const {queryType, mutationType, subscriptionType} = classified;
+
+  const schemaLinks = [];
+  if (queryType) {
+    schemaLinks.push({to: queryType.slug, text: queryType.name});
+  }
+  if (mutationType) {
+    schemaLinks.push({to: mutationType.slug, text: mutationType.name});
+  }
+  if (subscriptionType) {
+    schemaLinks.push({to: subscriptionType.slug, text: subscriptionType.name});
+  }
+
+  for (const link of [
     {
       to: '/objects',
       text: 'All GraphQL Objects',
@@ -188,7 +208,9 @@ function Sidebar() {
       to: '/input-objects',
       text: 'All GraphQL Input Objects',
     },
-  ];
+  ]) {
+    schemaLinks.push(link);
+  }
 
   return (
     <Box pad="none" elevation="small" background="white">
