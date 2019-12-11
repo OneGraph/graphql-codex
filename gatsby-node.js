@@ -583,6 +583,24 @@ exports.createResolvers = ({createResolvers, intermediateSchema}) => {
           return schema.getType(args.name);
         },
       },
+      queryType: {
+        type: ObjectType,
+        resolve(source, args, context, info) {
+          return schema.getQueryType();
+        },
+      },
+      mutationType: {
+        type: ObjectType,
+        resolve(source, args, context, info) {
+          return schema.getMutationType();
+        },
+      },
+      subscriptionType: {
+        type: ObjectType,
+        resolve(source, args, context, info) {
+          return schema.getSubscriptionType();
+        },
+      },
     },
   };
   createResolvers(resolvers);
