@@ -5,7 +5,7 @@ description: |
   
   Note that the `text` field will be null if the file is a binary blog (such as an image).
   
-  If you need to read the binary content, email support@onegraph.com and we can stitch in the [corresponding REST endpoint](https://developer.github.com/v3/git/blobs/#get-a-blob)
+  If you need to read the binary content, email [support@onegraph.com](mailto:support@onegraph.com?subject=Can you add a base64-encoded binary content field to the `GitHubBlob` type on OneGraph?) and we can stitch in the [corresponding REST endpoint](https://developer.github.com/v3/git/blobs/#get-a-blob)
 ---
 
 ```graphql
