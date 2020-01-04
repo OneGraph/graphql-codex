@@ -4,7 +4,7 @@ description: |
   
   Also see:
   - how to [Merge a Pull Request](GitHubMergePullRequest)
-  - how to [Add a comment to a Pull Request](GitHubAddPullRequestCommentMutation)
+  - how to [Add a comment to a Pull Request](GitHubAddPullRequestComment)
   
 ---
 
