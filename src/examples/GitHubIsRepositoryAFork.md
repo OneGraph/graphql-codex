@@ -2,7 +2,7 @@
 description: |
   Given a GitHub `$repoOwner`/`$repoName`, find if the corresponding repository is fork (`gitHub.repository.isFork`) - and if so, what the original repository is `gitHub.repository.parent.nameWithOwner`.
 contributedBy: "@sgrove"
-variables: "{}"
+variables: "{\"repoName\":\"graphql-docs\",\"repoOwner\":\"sgrove\"}" 
 ---
 
 ```graphql
