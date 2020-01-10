@@ -22,5 +22,4 @@ query FindUserContributionToOrgCount(
     }
   }
 }
-
 ```
