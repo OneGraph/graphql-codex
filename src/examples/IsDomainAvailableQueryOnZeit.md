@@ -4,7 +4,7 @@ description: |
 contributedBy: "@sgrove"
 variables: "{\"domain\":\"onegraph.com\"}"
 title: "IsDomainAvailableQueryOnZeit"
-result: ""{\"data\":{\"zeit\":{\"domainAvailable\":{\"available\":false}}}}""
+result: "\"{\"data\":{\"zeit\":{\"domainAvailable\":{\"available\":false}}}}\""
 ---
 
 ```graphql
