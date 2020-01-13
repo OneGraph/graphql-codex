@@ -10,7 +10,7 @@ contributedBy: "@sgrove"
 variables: ""
 title: "FindMyTwitchUserIdAndEmail"
 result: |
-  "{\"data\":{\"me\":{\"twitchTv\":{\"id\":\"258615874\",\"email\":\"sean.s.grove+twitchtv@gmail.com\",\"emailVerified\":true,\"displayName\":\"seangrove_io\"}}}}"
+  "{\"data\":{\"me\":{\"twitchTv\":{\"id\":\"258615874\",\"email\":\"sean@onegraph.com\",\"emailVerified\":true,\"displayName\":\"seangrove_io\"}}}}"
 ---
 
 ```graphql
