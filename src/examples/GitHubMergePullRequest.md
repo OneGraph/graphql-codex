@@ -11,7 +11,7 @@ description: |
     "repoName": "graphql-docs",
     "repoOwner": "OneGraph",
     "number": 1,
-    "title": "Merge the GitHub examples, thanjk you @dwwoelfel!",
+    "title": "Merge the GitHub examples, thank you @dwwoelfel!",
     "sha": "44d4e20fd739f486411049b7e94849d7b3332770"
   }
   ```
