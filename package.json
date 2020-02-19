@@ -39,8 +39,10 @@
     "styled-components": "^4.4.1"
   },
   "devDependencies": {
+    "firebase-tools": "^7.13.1",
     "node-fetch": "^2.6.0",
-    "prettier": "^1.19.1"
+    "prettier": "^1.19.1",
+    "tiny-async-pool": "^1.1.0"
   },
   "keywords": [
     "gatsby"
