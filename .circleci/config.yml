@@ -47,7 +47,7 @@ jobs:
           at: ./
       - run:
           name: 'Deploy to Firebase'
-          command: node script/deploy-firebase-directory.js --project onegraph-dashboard --subpath schema --directory public/ --commit --token "$FIREBASE_TOKEN"
+          command: yarn firebase-deploy-directory --project onegraph-dashboard --subpath schema --directory public/ --commit --token "$FIREBASE_TOKEN"
 
   staging_deploy:
     docker:
@@ -60,7 +60,7 @@ jobs:
           at: ./
       - run:
           name: 'Deploy to Firebase staging'
-          command: node script/deploy-firebase-directory.js --project oph-dashboard-staging --subpath schema --directory public/ --commit --token "$FIREBASE_TOKEN"
+          command: yarn firebase-deploy-directory --project oph-dashboard-staging --subpath schema --directory public/ --commit --token "$FIREBASE_TOKEN"
 
 
 workflows:
