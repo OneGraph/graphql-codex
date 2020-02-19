@@ -9,12 +9,12 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: graphql-docs-dependency-cache-v3-{{ checksum "package.json" }}
+          key: graphql-docs-dependency-cache-v3-{{ checksum "yarn.lock" }}
       - run:
           name: 'Install graphql-docs dependencies'
           command: "yarn install --frozen-lockfile"
       - save_cache:
-          key: graphql-docs-dependency-cache-v3-{{ checksum "package.json" }}
+          key: graphql-docs-dependency-cache-v3-{{ checksum "yarn.lock" }}
           paths:
             - node_modules
       - restore_cache:
@@ -35,6 +35,7 @@ jobs:
             - public
             - package.json
             - node_modules
+            - script
   deploy:
     docker:
       - image: node:12
