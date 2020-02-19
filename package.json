@@ -39,11 +39,13 @@
     "styled-components": "^4.4.1"
   },
   "devDependencies": {
+    "firebase-deploy-directory": "1.0.2",
     "node-fetch": "^2.6.0",
-    "prettier": "^1.19.1",
-    "firebase-deploy-directory": "1.0.0"
+    "prettier": "^1.19.1"
   },
-  "keywords": ["gatsby"],
+  "keywords": [
+    "gatsby"
+  ],
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
