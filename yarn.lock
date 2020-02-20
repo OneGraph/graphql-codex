@@ -6056,10 +6056,10 @@ find-versions@^3.0.0:
     array-uniq "^2.1.0"
     semver-regex "^2.0.0"
 
-firebase-deploy-directory@1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/firebase-deploy-directory/-/firebase-deploy-directory-1.0.2.tgz#4d072f96ccbf94a41da8f6f595539a1e8c552143"
-  integrity sha512-E6JK6ZD8C+DMs2w8rqufDuH3EdOw4zacTF4k7gcmWtiJS/1IYvG6dalMn9xQ68VpUqGzcW2U9kN+jI/QP+j/mA==
+firebase-deploy-directory@1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/firebase-deploy-directory/-/firebase-deploy-directory-1.0.3.tgz#2e7d5532e769e628975f21a79b227296cc841700"
+  integrity sha512-UoM8m1GJt3rpd9mwRHMwl3so9M4n0dA1TmMxVxkZCtC5OKlXltnKkWrYvahb1iYMlIhYvu4ZvInkgEhDhe+Yjg==
   dependencies:
     firebase-tools "^7.13.1"
     node-fetch "^2.6.0"
