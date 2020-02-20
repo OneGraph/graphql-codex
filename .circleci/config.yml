@@ -1,0 +1,82 @@
+version: 2.1
+jobs:
+  build_graphql_docs:
+    docker:
+      - image: node:12
+    resource_class: "xlarge"
+    environment:
+      - TERM: dumb
+    steps:
+      - checkout
+      - restore_cache:
+          key: graphql-docs-dependency-cache-v3-{{ checksum "yarn.lock" }}
+      - run:
+          name: 'Install graphql-docs dependencies'
+          command: "yarn install --frozen-lockfile"
+      - save_cache:
+          key: graphql-docs-dependency-cache-v3-{{ checksum "yarn.lock" }}
+          paths:
+            - node_modules
+      - restore_cache:
+          key: graphq-docs-gatsby-cache-v4
+      - run:
+          name: 'Build'
+          environment:
+            CI: true
+          command: "yarn build --prefix-paths"
+      - save_cache:
+          key: graphq-docs-gatsby-cache-v4
+          paths:
+            - .cache
+            - public
+      - persist_to_workspace:
+          root: ./
+          paths:
+            - public
+            - package.json
+            - node_modules
+            - script
+  deploy:
+    docker:
+      - image: node:12
+    resource_class: "xlarge"
+    environment:
+      - TERM: dumb
+    steps:
+      - attach_workspace:
+          at: ./
+      - run:
+          name: 'Deploy to Firebase'
+          command: yarn firebase-deploy-directory --project onegraph-dashboard --subpath schema --directory public/ --commit --token "$FIREBASE_TOKEN"
+
+  staging_deploy:
+    docker:
+      - image: node:12
+    resource_class: "xlarge"
+    environment:
+      - TERM: dumb
+    steps:
+      - attach_workspace:
+          at: ./
+      - run:
+          name: 'Deploy to Firebase staging'
+          command: yarn firebase-deploy-directory --project oph-dashboard-staging --subpath schema --directory public/ --commit --token "$FIREBASE_TOKEN"
+
+
+workflows:
+  version: 2
+  build-deploy:
+    jobs:
+      - build_graphql_docs
+      - deploy:
+          requires:
+            - build_graphql_docs
+          filters:
+            branches:
+              only: master
+      - staging_deploy:
+          requires:
+            - build_graphql_docs
+          filters:
+            branches:
+              ignore: master
