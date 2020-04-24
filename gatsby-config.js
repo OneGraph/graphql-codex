@@ -4,7 +4,7 @@ module.exports = {
     title: `OneGraph GraphQL Schema Reference`,
     description: `Full reference for OneGraph's GraphQL Schema.`,
     author: `@onegraphio`,
-    siteUrl: 'https://www.onegraph.com/schema',
+    siteUrl: 'https://www.onegraph.com/',
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
