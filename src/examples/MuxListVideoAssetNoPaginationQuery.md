@@ -6,9 +6,8 @@ description: |
   
   ```
   {
-    "secret": "mymuxsecret"
+    "secret": "mymuxsecret",
     "tokenId": "mytokenid"
-    "id": "assetId"
   }
   ```
 contributedBy: "@sgrove"
