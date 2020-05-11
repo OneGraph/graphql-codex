@@ -6,7 +6,7 @@ description: |
   
   ```
   {
-    "secret": "mymuxsecret"
+    "secret": "mymuxsecret",
     "tokenId": "mytokenid"
   }
   ```
