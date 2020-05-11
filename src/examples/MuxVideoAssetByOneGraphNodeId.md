@@ -2,7 +2,7 @@
 description: |
   Look up a Mux video asset directly by its oneGraphNodeId.
   
-  You'll need your Mux access token `id`/`secret` for the variables:
+  You'll need your Mux access token `id`/`secret` for the variables (find them on the [Mux dashboard settings](https://dashboard.mux.com/settings/access-tokens)):
   
   ```
   {

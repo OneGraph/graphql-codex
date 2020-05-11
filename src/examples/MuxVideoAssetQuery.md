@@ -2,7 +2,7 @@
 description: |
   Find a VideoAsset on Mux via its id.
   
-  You'll need your Mux access token `id`/`secret` for the variables, and the id of your Mux asset:
+  You'll need your Mux access token `id`/`secret` for the variables (find them on the [Mux dashboard settings](https://dashboard.mux.com/settings/access-tokens)), and the id of your Mux asset:
   
   ```
   {
