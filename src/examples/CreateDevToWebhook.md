@@ -9,7 +9,7 @@ contributedBy: "@sgrove"
 variables: ""
 title: "CreateDevToWebhook"
 result: |
-  "{\"data\":{\"devTo\":{\"createWebhook\":{\"webhook\":{\"typeOf\":\"webhook_endpoint\",\"id\":658,\"source\":\"OneGraph\",\"targetUrl\":\"https://websmee.com/hook/dev-to-example?_websmee_inspect\",\"events\":[\"article_created\",\"article_updated\"],\"createdAt\":\"2020-01-24T23:18:50Z\"}}}}}"
+  "{\"data\":{\"devTo\":{\"createWebhook\":{\"webhook\":{\"id\":658,\"source\":\"OneGraph\",\"targetUrl\":\"https://websmee.com/hook/dev-to-example?_websmee_inspect\",\"events\":[\"article_created\",\"article_updated\"],\"createdAt\":\"2020-01-24T23:18:50Z\"}}}}}"
 ---
 
 ```graphql
@@ -28,7 +28,6 @@ mutation CreateDevToWebhook($apiKey: String!) {
       }
     ) {
       webhook {
-        typeOf
         id
         source
         targetUrl

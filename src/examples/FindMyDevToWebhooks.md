@@ -7,7 +7,7 @@ contributedBy: "@sgrove"
 variables: ""
 title: "FindMyDevToWebhooks"
 result: |
-  "{\"data\":{\"me\":{\"devTo\":{\"webhooks\":[{\"typeOf\":\"webhook_endpoint\",\"id\":656,\"source\":\"OG1\",\"targetUrl\":\"https://postb.in/1579902190947-0645356504246\",\"events\":[\"article_created\",\"article_updated\"],\"createdAt\":\"2020-01-24T22:01:37Z\"}]}}}}"
+  "{\"data\":{\"me\":{\"devTo\":{\"webhooks\":[{\"id\":656,\"source\":\"OG1\",\"targetUrl\":\"https://postb.in/1579902190947-0645356504246\",\"events\":[\"article_created\",\"article_updated\"],\"createdAt\":\"2020-01-24T22:01:37Z\"}]}}}}"
 ---
 
 ```graphql
@@ -15,7 +15,6 @@ query FindMyDevToWebhooks($apiKey: String!) {
   me(auths: { devToAuth: { apiKey: $apiKey } }) {
     devTo {
       webhooks {
-        typeOf
         id
         source
         targetUrl
