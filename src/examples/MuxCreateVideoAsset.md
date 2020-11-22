@@ -1,35 +1,26 @@
 ---
 description: |
   Create a video asset on Mux with a source video, an image overlay, and textual subtitles.
-  
+
   You'll need your Mux access token `id`/`secret` for the variables (find them on the [Mux dashboard settings](https://dashboard.mux.com/settings/access-tokens)):
-  
+
   ```
   {
     "secret": "mymuxsecret",
     "tokenId": "mytokenid"
   }
   ```
-contributedBy: "@sgrove"
-variables: ""
-title: "MuxCreateVideoAsset"
+contributedBy: '@sgrove'
+variables: ''
+title: 'MuxCreateVideoAsset'
 result: |
   "{\"data\":{\"mux\":{\"createAsset_oneGraph\":{\"asset\":{\"isLive\":null,\"id\":\"J900b7BP98qGq02Gg4XOow016CcQFre6Xgu\",\"isTest\":null,\"errors\":null,\"playbackIds\":[{\"id\":\"N2FjJyADSs02JSN2LWdsQoxvJPSRW401Cm\",\"policy\":\"PUBLIC\"}],\"status\":\"preparing\"}}}}}"
 ---
 
 ```graphql
-mutation MuxCreateVideoAsset(
-  $secret: String!
-  $tokenId: String!
-) {
-  mux(
-    auths: {
-      muxAuth: {
-        accessToken: { secret: $secret, tokenId: $tokenId }
-      }
-    }
-  ) {
-    createAsset_oneGraph(
+mutation MuxCreateVideoAsset($secret: String!, $tokenId: String!) {
+  mux(auths: {muxAuth: {accessToken: {secret: $secret, tokenId: $tokenId}}}) {
+    createAsset(
       input: {
         # The source video to start with (thanks to http://techslides.com/sample-webm-ogg-and-mp4-video-files-for-html5 for providing this!)
         sourceUrl: "http://techslides.com/demos/sample-videos/small.mp4"
@@ -92,5 +83,4 @@ fragment MuxVideoAssetFragment on MuxVideoAsset {
   }
   status
 }
-
 ```
