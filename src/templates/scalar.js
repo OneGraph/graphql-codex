@@ -2,7 +2,7 @@ import React from 'react';
 import {graphql} from 'gatsby';
 import TypeBox from '../components/type-box';
 
-export default ({data}) => {
+const Scalar = ({data}) => {
   const type = data.type;
   if (type.__typename !== 'GraphQLScalarType') {
     throw new Error('Unknown scalar ' + type.name);
@@ -22,3 +22,5 @@ export const query = graphql`
     }
   }
 `;
+
+export default Scalar;

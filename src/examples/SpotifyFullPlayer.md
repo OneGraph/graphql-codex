@@ -35,7 +35,6 @@ query Search($query: String!) {
 query AboutMe {
   me {
     spotify {
-      birthdate
       country
       displayName
       email

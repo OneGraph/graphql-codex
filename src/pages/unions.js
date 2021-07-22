@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link, graphql} from 'gatsby';
 import {Box, Heading, Paragraph, Text} from 'grommet';
-import SEO from '../components/seo';
+import Seo from '../components/seo';
 import Description from '../components/description';
 
 export const query = graphql`
@@ -14,9 +14,9 @@ export const query = graphql`
   }
 `;
 
-export default ({data}) => (
+const Unions = ({data}) => (
   <>
-    <SEO title="GraphQL Unions" />
+    <Seo title="GraphQL Unions" />
     <Box elevation="small" background="white" pad="medium">
       <Heading margin="none" level={3}>
         GraphQL Unions
@@ -40,3 +40,5 @@ export default ({data}) => (
     </Box>
   </>
 );
+
+export default Unions;

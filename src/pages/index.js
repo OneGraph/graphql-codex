@@ -2,7 +2,7 @@ import React from 'react';
 import {Link} from 'gatsby';
 import {Heading, Paragraph, Box} from 'grommet';
 
-import SEO from '../components/seo';
+import Seo from '../components/seo';
 
 function P({children}) {
   return (
@@ -15,7 +15,7 @@ function P({children}) {
 function IndexPage() {
   return (
     <>
-      <SEO title="OneGraph GraphQL Schema Reference" />
+      <Seo title="OneGraph GraphQL Schema Reference" />
       <Box pad="medium" elevation="small" background="white">
         <Heading margin="none" level={3}>
           OneGraph's GraphQL Schema

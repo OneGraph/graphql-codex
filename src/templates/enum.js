@@ -5,7 +5,7 @@ import Head from '../components/head';
 import Description from '../components/description';
 import {Text} from 'grommet';
 
-export default ({data}) => {
+const Enum = ({data}) => {
   const type = data.type;
   return (
     <>
@@ -39,3 +39,5 @@ export const query = graphql`
     }
   }
 `;
+
+export default Enum;

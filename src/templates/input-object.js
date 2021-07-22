@@ -3,7 +3,7 @@ import {graphql} from 'gatsby';
 import TypeBox from '../components/type-box';
 import FieldsBox from '../components/fields-box';
 
-export default ({data}) => {
+const InputObject = ({data}) => {
   const type = data.type;
   return (
     <>
@@ -24,3 +24,5 @@ export const query = graphql`
     }
   }
 `;
+
+export default InputObject;

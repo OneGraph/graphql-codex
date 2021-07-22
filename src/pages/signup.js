@@ -1,5 +1,5 @@
 import React from 'react';
-import SEO from '../components/seo';
+import Seo from '../components/seo';
 import {
   Anchor,
   Box,
@@ -156,10 +156,10 @@ function P({children}) {
   );
 }
 
-export default ({data}) => {
+const SignupPage = ({data}) => {
   return (
     <>
-      <SEO title="Sign up" />
+      <Seo title="Sign up" />
       <Box pad="medium" elevation="small" background="white">
         <Heading margin="none" level={3}>
           Sign Up
@@ -188,3 +188,5 @@ export default ({data}) => {
     </>
   );
 };
+
+export default SignupPage;

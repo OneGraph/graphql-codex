@@ -6,7 +6,7 @@ import Head from '../components/head';
 import {Box, Text} from 'grommet';
 import Description from '../components/description';
 
-export default ({data}) => {
+const Interface = ({data}) => {
   const type = data.type;
   return (
     <>
@@ -49,3 +49,5 @@ export const query = graphql`
     }
   }
 `;
+
+export default Interface;
