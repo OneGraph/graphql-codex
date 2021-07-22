@@ -9,7 +9,6 @@ description: |
 query AboutMe {
   me {
     spotify {
-      birthdate
       country
       displayName
       email

@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link, graphql} from 'gatsby';
 import {Box, Heading, Paragraph, Text} from 'grommet';
-import SEO from '../components/seo';
+import Seo from '../components/seo';
 import Description from '../components/description';
 
 export const query = graphql`
@@ -14,9 +14,9 @@ export const query = graphql`
   }
 `;
 
-export default ({data}) => (
+const Interfaces = ({data}) => (
   <>
-    <SEO title="GraphQL Interfaces" />
+    <Seo title="GraphQL Interfaces" />
     <Box pad="medium" elevation="small" background="white">
       <Heading margin="none" level={3}>
         GraphQL Interfaces
@@ -41,3 +41,5 @@ export default ({data}) => (
     </Box>
   </>
 );
+
+export default Interfaces;

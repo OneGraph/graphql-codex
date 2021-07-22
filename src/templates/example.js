@@ -5,13 +5,13 @@ import {Box, Text, Heading, Anchor} from 'grommet';
 import {Share} from 'grommet-icons';
 import Description from '../components/description';
 import RenderExample from '../components/render-example';
-import SEO from '../components/seo';
+import Seo from '../components/seo';
 
-export default ({data}) => {
+const Example = ({data}) => {
   const {example} = data;
   return (
     <>
-      <SEO title={example.name} />
+      <Seo title={example.name} />
       <Box pad="medium" elevation="small" background="white">
         <Heading margin="none" className="def" level={3}>
           {example.name}
@@ -63,3 +63,5 @@ export const query = graphql`
     }
   }
 `;
+
+export default Example;

@@ -7,7 +7,7 @@ import Tippy from '@tippy.js/react';
 import {TippySingleton} from './layout';
 import RenderExample from './render-example';
 import Description from './description';
-import SEO from './seo';
+import Seo from './seo';
 
 export const query = graphql`
   fragment TypeBoxFields on GraphQLNamedType {
@@ -80,7 +80,7 @@ export default function TypeBox({type, children}) {
   const singleton = React.useContext(TippySingleton);
   return (
     <>
-      <SEO title={type.name} />
+      <Seo title={type.name} />
       <Box pad="medium" elevation="small" background="white">
         <Heading margin="none" className="kind-NamedType" level={3}>
           {type.name}

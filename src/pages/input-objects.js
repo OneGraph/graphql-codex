@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link, graphql} from 'gatsby';
 import {Box, Heading, Paragraph, Text} from 'grommet';
-import SEO from '../components/seo';
+import Seo from '../components/seo';
 import Description from '../components/description';
 
 export const query = graphql`
@@ -14,9 +14,9 @@ export const query = graphql`
   }
 `;
 
-export default ({data}) => (
+const InputObjets = ({data}) => (
   <>
-    <SEO title="GraphQL Input Objects" />
+    <Seo title="GraphQL Input Objects" />
     <Box pad="medium" elevation="small" background="white">
       <Heading margin="none" level={3}>
         GraphQL Input Objects
@@ -39,3 +39,5 @@ export default ({data}) => (
     </Box>
   </>
 );
+
+export default InputObjets;

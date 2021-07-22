@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link, graphql} from 'gatsby';
-import SEO from '../components/seo';
+import Seo from '../components/seo';
 import {Box, Heading, Text} from 'grommet';
 import Description from '../components/description';
 
@@ -18,10 +18,10 @@ export const query = graphql`
   }
 `;
 
-export default ({data}) => {
+const Examples = ({data}) => {
   return (
     <>
-      <SEO title="Example Queries" />
+      <Seo title="Example Queries" />
       <Box pad="medium" elevation="small" background="white">
         <Heading margin="none" level={3}>
           Example queries
@@ -42,3 +42,5 @@ export default ({data}) => {
     </>
   );
 };
+
+export default Examples;
