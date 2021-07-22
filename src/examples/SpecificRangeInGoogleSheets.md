@@ -15,7 +15,7 @@ query SpecificRangeInGoogleSheets(
   # it would be "1CRUduucIQKot-Bwvh4teSblQTWPsIoNUs6AGLAg7Sjs"
   $id: String!
   # Normal syntax for selecting ranges in sheets
-  $ranges: [String!] = ["e12:f16"]
+  $ranges: String = "e12:f16"
 ) {
   google {
     sheets {
