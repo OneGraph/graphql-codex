@@ -17,8 +17,8 @@ jobs:
           key: graphql-docs-dependency-cache-v3-{{ checksum "yarn.lock" }}
           paths:
             - node_modules
-      - restore_cache:
-          key: graphq-docs-gatsby-cache-v4
+      # - restore_cache:
+      #     key: graphq-docs-gatsby-cache-v4
       - run:
           name: 'Build'
           environment:
