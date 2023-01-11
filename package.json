@@ -24,7 +24,7 @@
     "gatsby-plugin-webpack-bundle-analyser-v2": "^1.1.24",
     "gatsby-plugin-webpack-bundle-analyzer": "^1.0.5",
     "gatsby-source-filesystem": "^3.10.0",
-    "gatsby-transformer-remark": "^4.7.0",
+    "gatsby-transformer-remark": "^5.25.1",
     "gatsby-transformer-sharp": "^3.10.0",
     "grommet": "^2.8.0",
     "grommet-icons": "^4.4.0",
